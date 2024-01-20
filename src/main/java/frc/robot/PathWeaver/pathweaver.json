@@ -1,0 +1,9 @@
+{
+  "lengthUnit": "Meter",
+  "exportUnit": "Always Meters",
+  "maxVelocity": 3.7,
+  "maxAcceleration": 4.0,
+  "trackWidth": 0.69,
+  "gameName": "Crescendo",
+  "outputDir": "../../../../../../../../Pathweaver"
+}
