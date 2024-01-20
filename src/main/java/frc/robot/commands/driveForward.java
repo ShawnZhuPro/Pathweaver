@@ -41,12 +41,7 @@ public class driveForward extends Command {
 
   public driveForward() {
     // Use addRequirements() here to declare subsystem dependencies.
-    var xController = new PIDController(kPx, kIx, kDx);
-    var yController = new PIDController(kPy, kIy, kDy);
-    // maxvelocity and max acceleration in meters of the robot (need constraints to make a holonomic drive controller)
-    Constraints constraints = new TrapezoidProfile.Constraints(3.7, 4.0);
-    var thetaController = new ProfiledPIDController(kPt, kIt, kDt, constraints);
-    var holonomicDriveController = new HolonomicDriveController(xController, yController, thetaController);
+
   }
 
   // Called when the command is initially scheduled.
@@ -58,6 +53,14 @@ public class driveForward extends Command {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
+    // Holonomic drive controller
+    var xController = new PIDController(kPx, kIx, kDx);
+    var yController = new PIDController(kPy, kIy, kDy);
+    // maxvelocity and max acceleration in meters of the robot (need constraints to make a holonomic drive controller)
+    Constraints constraints = new TrapezoidProfile.Constraints(3.7, 4.0);
+    var thetaController = new ProfiledPIDController(kPt, kIt, kDt, constraints);
+    var holonomicDriveController = new HolonomicDriveController(xController, yController, thetaController);
+
     String trajectoryJson = "C:/Users/outre/Documents/Pathweaver/output/Forward.wpilib.json";
     Path trajectoryPath = Filesystem.getDeployDirectory().toPath().resolve(trajectoryJson);
     try {
